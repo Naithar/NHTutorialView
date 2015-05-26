@@ -7,6 +7,7 @@
 //
 
 #import "NViewController.h"
+@import NHTutorialView;
 
 @interface NViewController ()
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor grayColor];
+    
+    [[[NHTutorialView alloc] initWithFrame:CGRectMake(10, 10, 200, 100)] showAtPoint:CGPointMake(150, 400) animated:YES inView:self.view];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
