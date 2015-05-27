@@ -65,18 +65,21 @@
     self.containerView.clipsToBounds = YES;
     [self addSubview:self.containerView];
     
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 35, 35)];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 35, 35)];
     self.imageView.backgroundColor = [UIColor redColor];
     [self.containerView addSubview:self.imageView];
     
-    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 35, 35)];
+    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 35, 35)];
     self.closeButton.backgroundColor = [UIColor greenColor];
     [self.closeButton addTarget:self action:@selector(closeButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
+    self.closeButton.imageView.contentMode = UIViewContentModeTopRight;
+    self.closeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
+    self.closeButton.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
     [self.containerView addSubview:self.closeButton];
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.text = @"title";
-    self.titleLabel.numberOfLines = 1;
+    self.titleLabel.numberOfLines = 2;
     self.titleLabel.backgroundColor = [UIColor lightGrayColor];
     [self.containerView addSubview:self.titleLabel];
     
@@ -102,7 +105,7 @@
 
 - (void)showAtPoint:(CGPoint)point animated:(BOOL)animated inView:(UIView*)view {
     if ((view != self.superview
-        || !self.superview)
+         || !self.superview)
         && view) {
         [self removeFromSuperview];
         
@@ -119,26 +122,26 @@
     self.pointerImageView.frame = pointerFrame;
     
     CGRect containerFrame = self.bounds;
-    containerFrame.size.height -= self.pointerImageView.frame.size.height;
+    containerFrame.size.height -= (self.pointerImageView.frame.size.height - 1);
     self.containerView.frame = containerFrame;
     
     CGRect closeButtonFrame = self.closeButton.frame;
-    closeButtonFrame.origin.y = 10;
-    closeButtonFrame.origin.x = self.containerView.frame.size.width - 40;
+    closeButtonFrame.origin.y = 15;
+    closeButtonFrame.origin.x = self.containerView.frame.size.width - 45;
     self.closeButton.frame = closeButtonFrame;
     
     CGRect titleLabelFrame = CGRectZero;
-    titleLabelFrame.origin.x = 45;
-    titleLabelFrame.origin.y = 5;
+    titleLabelFrame.origin.x = 55;
+    titleLabelFrame.origin.y = 15;
     titleLabelFrame.size.height = 25;
-    titleLabelFrame.size.width = self.containerView.frame.size.width - 90;
+    titleLabelFrame.size.width = self.containerView.frame.size.width - 110;
     self.titleLabel.frame = titleLabelFrame;
     
     CGRect descriptionLabelFrame = CGRectZero;
-    descriptionLabelFrame.origin.y = 30;
-    descriptionLabelFrame.origin.x = 45;
-    descriptionLabelFrame.size.width = self.containerView.frame.size.width - 90;
-    descriptionLabelFrame.size.height = self.containerView.frame.size.height - 35;
+    descriptionLabelFrame.origin.y = 40;
+    descriptionLabelFrame.origin.x = 55;
+    descriptionLabelFrame.size.width = self.containerView.frame.size.width - 110;
+    descriptionLabelFrame.size.height = self.containerView.frame.size.height - 45;
     self.descriptionLabel.frame = descriptionLabelFrame;
 }
 
