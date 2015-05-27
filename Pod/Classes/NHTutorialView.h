@@ -17,6 +17,8 @@
 @property (nonatomic, readonly, strong) UILabel *descriptionLabel;
 @property (nonatomic, readonly, strong) UIButton *closeButton;
 
+- (void)setContainerBackgroundColor:(UIColor*)color;
+
 - (void)showAtPoint:(CGPoint)point;
 - (void)showAtPoint:(CGPoint)point animated:(BOOL)animated;
 - (void)showAtPoint:(CGPoint)point animated:(BOOL)animated inView:(UIView*)view;
