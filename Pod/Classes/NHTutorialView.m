@@ -80,14 +80,15 @@
     [self.containerView addSubview:self.closeButton];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text = @"title_a\ntitle_b";
+    self.titleLabel.text = @"title_a\ntitle_b sadas dsa as asd a";
     self.titleLabel.numberOfLines = 2;
+    self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail | NSLineBreakByWordWrapping;
     self.titleLabel.backgroundColor = [UIColor whiteColor];
     [self.containerView addSubview:self.titleLabel];
     
     self.descriptionLabel = [[UILabel alloc] init];
     self.descriptionLabel.text = @"decsription\na\nb\nc";
-    self.descriptionLabel.numberOfLines = 0;
+    self.descriptionLabel.numberOfLines = 5;
     self.descriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail | NSLineBreakByWordWrapping;
     self.descriptionLabel.backgroundColor = [UIColor whiteColor];
     [self.containerView addSubview:self.descriptionLabel];
@@ -126,7 +127,7 @@
     CGFloat labelWidth = self.frame.size.width - 110;
     
     CGFloat titleHeight = [self.titleLabel.text
-                           boundingRectWithSize:CGSizeMake(labelWidth, CGFLOAT_MAX)
+                           boundingRectWithSize:CGSizeMake(labelWidth, [UIFont systemFontOfSize:17].lineHeight * 2)
                            options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
                            attributes:@{
                                         NSFontAttributeName : [UIFont systemFontOfSize:17]
@@ -134,7 +135,7 @@
                            context:nil].size.height;
     
     CGFloat descriptionHeight = [self.descriptionLabel.text
-                           boundingRectWithSize:CGSizeMake(labelWidth, CGFLOAT_MAX)
+                           boundingRectWithSize:CGSizeMake(labelWidth, [UIFont systemFontOfSize:17].lineHeight * 5)
                            options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
                            attributes:@{
                                         NSFontAttributeName : [UIFont systemFontOfSize:17]
