@@ -57,6 +57,7 @@
     self.pointerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     self.pointerImageView.backgroundColor = [UIColor whiteColor];
     self.pointerImageView.contentMode = UIViewContentModeTop;
+    self.pointerImageView.image = [UIImage imageNamed:@"nhTutorialView.tail.png"];
     [self addSubview:self.pointerImageView];
     
     self.containerView = [[UIView alloc] init];
@@ -95,7 +96,7 @@
 }
 
 - (void)closeButtonTouch:(id)sender {
-    [self hide];
+    [self hideAnimated:YES];
 }
 
 - (void)setContainerBackgroundColor:(UIColor*)color {
@@ -127,18 +128,18 @@
     CGFloat labelWidth = self.frame.size.width - 110;
     
     CGFloat titleHeight = [self.titleLabel.text
-                           boundingRectWithSize:CGSizeMake(labelWidth, [UIFont systemFontOfSize:17].lineHeight * 2)
+                           boundingRectWithSize:CGSizeMake(labelWidth, (self.titleLabel.font ?: [UIFont systemFontOfSize:17]).lineHeight * 2)
                            options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
                            attributes:@{
-                                        NSFontAttributeName : [UIFont systemFontOfSize:17]
+                                        NSFontAttributeName : self.titleLabel.font ?: [UIFont systemFontOfSize:17]
                                         }
                            context:nil].size.height;
     
     CGFloat descriptionHeight = [self.descriptionLabel.text
-                           boundingRectWithSize:CGSizeMake(labelWidth, [UIFont systemFontOfSize:17].lineHeight * 5)
+                           boundingRectWithSize:CGSizeMake(labelWidth, (self.descriptionLabel.font ?: [UIFont systemFontOfSize:17]).lineHeight * 5)
                            options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
                            attributes:@{
-                                        NSFontAttributeName : [UIFont systemFontOfSize:17]
+                                        NSFontAttributeName : self.descriptionLabel.font ?: [UIFont systemFontOfSize:17]
                                         }
                            context:nil].size.height;
     
@@ -174,10 +175,26 @@
     descriptionLabelFrame.size.width = labelWidth;
     descriptionLabelFrame.size.height = descriptionHeight;
     self.descriptionLabel.frame = descriptionLabelFrame;
+    
+    self.alpha = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 1;
+    }];
 }
 
 - (void)hide {
-    [self removeFromSuperview];
+    [self hideAnimated:NO];
+}
+
+- (void)hideAnimated:(BOOL)animated {
+    
+    [UIView animateWithDuration:animated ? 0.3 : 0
+                     animations:^{
+                         self.alpha = 0;
+                     } completion:^(BOOL finished) {
+                         [self removeFromSuperview];
+                     }];
+    
 }
 
 @end

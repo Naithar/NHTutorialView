@@ -22,6 +22,8 @@
 - (void)showAtPoint:(CGPoint)point;
 - (void)showAtPoint:(CGPoint)point animated:(BOOL)animated;
 - (void)showAtPoint:(CGPoint)point animated:(BOOL)animated inView:(UIView*)view;
+
 - (void)hide;
+- (void)hideAnimated:(BOOL)animated;
 
 @end
