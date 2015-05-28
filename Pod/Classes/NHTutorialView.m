@@ -55,9 +55,9 @@
     self.backgroundColor = [UIColor clearColor];
     
     self.pointerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-    self.pointerImageView.backgroundColor = [UIColor whiteColor];
+    self.pointerImageView.backgroundColor = [UIColor clearColor];
     self.pointerImageView.contentMode = UIViewContentModeTop;
-    self.pointerImageView.image = [UIImage imageNamed:@"nhTutorialView.tail.png"];
+    self.pointerImageView.image = [UIImage imageNamed:@"NHTutorialView.tail.png"];
     [self addSubview:self.pointerImageView];
     
     self.containerView = [[UIView alloc] init];
@@ -72,7 +72,6 @@
     [self.containerView addSubview:self.imageView];
     
     self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 35, 35)];
-    [self.closeButton setTitle:@"x" forState:UIControlStateNormal];
     self.closeButton.backgroundColor = [UIColor whiteColor];
     [self.closeButton addTarget:self action:@selector(closeButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
     self.closeButton.imageView.contentMode = UIViewContentModeTopRight;
