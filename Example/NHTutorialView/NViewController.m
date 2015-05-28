@@ -7,7 +7,7 @@
 //
 
 #import "NViewController.h"
-@import NHTutorialView;
+#import <NHTutorialView.h>
 
 @interface NViewController ()
 

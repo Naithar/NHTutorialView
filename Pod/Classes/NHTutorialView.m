@@ -73,6 +73,9 @@
     
     self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 35, 35)];
     self.closeButton.backgroundColor = [UIColor whiteColor];
+    [self.closeButton setTitle:nil forState:UIControlStateNormal];
+    [self.closeButton setImage:[UIImage imageNamed:@"NHTutorialView.close.png"]
+                      forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(closeButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
     self.closeButton.imageView.contentMode = UIViewContentModeTopRight;
     self.closeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
@@ -91,6 +94,8 @@
     self.descriptionLabel.numberOfLines = 5;
     self.descriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail | NSLineBreakByWordWrapping;
     self.descriptionLabel.backgroundColor = [UIColor whiteColor];
+    self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
+    self.descriptionLabel.minimumScaleFactor = 0.85;
     [self.containerView addSubview:self.descriptionLabel];
 }
 
@@ -123,24 +128,24 @@
         [view addSubview:self];
     }
     
-    CGFloat offsetHeight = 20;
+    CGFloat offsetHeight = 30;
     CGFloat labelWidth = self.frame.size.width - 110;
     
-    CGFloat titleHeight = [self.titleLabel.text
-                           boundingRectWithSize:CGSizeMake(labelWidth, (self.titleLabel.font ?: [UIFont systemFontOfSize:17]).lineHeight * 2)
-                           options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
-                           attributes:@{
-                                        NSFontAttributeName : self.titleLabel.font ?: [UIFont systemFontOfSize:17]
-                                        }
-                           context:nil].size.height;
+    CGFloat titleHeight = round([self.titleLabel.text
+                                 boundingRectWithSize:CGSizeMake(labelWidth, (self.titleLabel.font ?: [UIFont systemFontOfSize:17]).lineHeight * 2)
+                                 options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
+                                 attributes:@{
+                                              NSFontAttributeName : self.titleLabel.font ?: [UIFont systemFontOfSize:17]
+                                              }
+                                 context:nil].size.height);
     
-    CGFloat descriptionHeight = [self.descriptionLabel.text
-                           boundingRectWithSize:CGSizeMake(labelWidth, (self.descriptionLabel.font ?: [UIFont systemFontOfSize:17]).lineHeight * 5)
-                           options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
-                           attributes:@{
-                                        NSFontAttributeName : self.descriptionLabel.font ?: [UIFont systemFontOfSize:17]
-                                        }
-                           context:nil].size.height;
+    CGFloat descriptionHeight = round([self.descriptionLabel.text
+                                       boundingRectWithSize:CGSizeMake(labelWidth, (self.descriptionLabel.font ?: [UIFont systemFontOfSize:17]).lineHeight * 5)
+                                       options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
+                                       attributes:@{
+                                                    NSFontAttributeName : self.descriptionLabel.font ?: [UIFont systemFontOfSize:17]
+                                                    }
+                                       context:nil].size.height);
     
     CGRect frame = self.frame;
     frame.origin.y = point.y - frame.size.height - 5;
@@ -160,16 +165,16 @@
     closeButtonFrame.origin.y = 15;
     closeButtonFrame.origin.x = self.containerView.frame.size.width - 45;
     self.closeButton.frame = closeButtonFrame;
-
+    
     CGRect titleLabelFrame = CGRectZero;
     titleLabelFrame.origin.x = 55;
     titleLabelFrame.origin.y = 15;
     titleLabelFrame.size.height = titleHeight;
     titleLabelFrame.size.width = labelWidth;
     self.titleLabel.frame = titleLabelFrame;
-
+    
     CGRect descriptionLabelFrame = CGRectZero;
-    descriptionLabelFrame.origin.y = titleHeight + 15;
+    descriptionLabelFrame.origin.y = titleHeight + 20;
     descriptionLabelFrame.origin.x = 55;
     descriptionLabelFrame.size.width = labelWidth;
     descriptionLabelFrame.size.height = descriptionHeight;
