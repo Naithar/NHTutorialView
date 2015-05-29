@@ -22,7 +22,7 @@
     self.view.backgroundColor = [UIColor grayColor];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NHTutorialView *tutorial = [[NHTutorialView alloc] initWithFrame:CGRectMake(10, 10, 200, 100)];
+        NHTutorialView *tutorial = [[NHTutorialView alloc] init];
         tutorial.descriptionLabel.font = [UIFont systemFontOfSize:14];
         [tutorial showAtPoint:CGPointMake(150, 400) animated:YES inView:self.view];
     });

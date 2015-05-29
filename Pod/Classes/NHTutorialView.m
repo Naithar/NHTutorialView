@@ -21,15 +21,15 @@
 
 @implementation NHTutorialView
 
-- (instancetype)init {
-    self = [super init];
-    
-    if (self) {
-        [self commonInit];
-    }
-    
-    return self;
-}
+//- (instancetype)init {
+//    self = [super init];
+//    
+//    if (self) {
+//        [self commonInit];
+//    }
+//    
+//    return self;
+//}
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
