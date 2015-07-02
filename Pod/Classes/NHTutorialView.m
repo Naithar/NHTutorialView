@@ -8,6 +8,12 @@
 
 #import "NHTutorialView.h"
 
+#define image(name) \
+[[UIImage alloc] initWithContentsOfFile: \
+[[NSBundle bundleForClass:[NHTutorialView class]]\
+pathForResource:name ofType:@"png"]]
+
+
 @interface NHTutorialView ()
 
 @property (nonatomic, strong) UIView *containerView;
@@ -57,7 +63,7 @@
     self.pointerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     self.pointerImageView.backgroundColor = [UIColor clearColor];
     self.pointerImageView.contentMode = UIViewContentModeTop;
-    self.pointerImageView.image = [UIImage imageNamed:@"NHTutorialView.tail.png"];
+    self.pointerImageView.image = image(@"NHTutorialView.tail");
     [self addSubview:self.pointerImageView];
     
     self.containerView = [[UIView alloc] init];
@@ -74,7 +80,7 @@
     self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 35, 35)];
     self.closeButton.backgroundColor = [UIColor whiteColor];
     [self.closeButton setTitle:nil forState:UIControlStateNormal];
-    [self.closeButton setImage:[UIImage imageNamed:@"NHTutorialView.close.png"]
+    [self.closeButton setImage:image(@"NHTutorialView.close")
                       forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(closeButtonTouch:) forControlEvents:UIControlEventTouchUpInside];
     self.closeButton.imageView.contentMode = UIViewContentModeTopRight;
@@ -83,14 +89,14 @@
     [self.containerView addSubview:self.closeButton];
     
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text = @"title_a\ntitle_b sadas dsa as asd a";
+    self.titleLabel.text = @"";
     self.titleLabel.numberOfLines = 2;
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail | NSLineBreakByWordWrapping;
     self.titleLabel.backgroundColor = [UIColor whiteColor];
     [self.containerView addSubview:self.titleLabel];
     
     self.descriptionLabel = [[UILabel alloc] init];
-    self.descriptionLabel.text = @"decsription\na\nb\nc";
+    self.descriptionLabel.text = @"";
     self.descriptionLabel.numberOfLines = 5;
     self.descriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail | NSLineBreakByWordWrapping;
     self.descriptionLabel.backgroundColor = [UIColor whiteColor];
