@@ -9,7 +9,7 @@
 #import "NHTutorialView.h"
 
 #define image(name) \
-[[UIImage alloc] initWithContentsOfFile: \
+[UIImage imageWithContentsOfFile: \
 [[NSBundle bundleForClass:[NHTutorialView class]]\
 pathForResource:name ofType:@"png"]]
 
